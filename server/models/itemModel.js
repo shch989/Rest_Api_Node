@@ -1,12 +1,13 @@
-const mongoose = require('mongoose') // Erase if already required
+const mongoose = require('mongoose')
 
-// Declare the Schema of the Mongo model
 const userSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
+    required: true, // 필수 입력
+    trim: true, // 공백 제거
+    minlength: 2, // 최소 2글자
+    maxlength: 30, // 최대 30글자
   },
 })
 
-//Export the model
 module.exports = mongoose.model('Item', userSchema)
