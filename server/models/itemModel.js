@@ -8,6 +8,11 @@ const userSchema = new mongoose.Schema({
     minlength: 2, // 최소 2글자
     maxlength: 30, // 최대 30글자
   },
+  price: {
+    type: Number,
+    required: true,
+    trim: true,
+  }
 })
 
 module.exports = mongoose.model('Item', userSchema)
