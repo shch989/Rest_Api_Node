@@ -33,3 +33,11 @@ exports.putEditProduct = (req, res, next) => {
     })
   })
 }
+
+exports.deleteProduct = (req, res, next) => {
+  const itemId = req.params.itemId;
+  Item.findByIdAndDelete(itemId, (err) => {
+    if (err) return res.json({ message: err });
+    return res.status(200).json({ message: "상품이 삭제되었습니다" });
+  });
+};
