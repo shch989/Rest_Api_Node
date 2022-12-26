@@ -16,24 +16,25 @@ const userSchema = new mongoose.Schema({
       title: {
         type: String,
         required: true,
-        unique: true,
       },
       imageUrl: {
         type: String,
         required: true,
-        unique: true,
       },
       price: {
         type: Number,
         required: true,
-        unique: true,
       },
       quantity: {
         type: Number,
+        min: 1,
         required: true,
-        unique: true,
       },
-      _id: false
+    totalPrice: {
+      type: Number,
+      required: true,
+    },
+    _id: false
     }
   ],
 })

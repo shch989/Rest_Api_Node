@@ -29,8 +29,8 @@ exports.addCart = (req, res, next) => {
     imageUrl: req.body.imageUrl,
     price: +req.body.price,
     quantity: +req.body.quantity,
+    totalPrice: +req.body.totalPrice
   }
-
   Cart.findOne({ userId: userId }, (err, cart) => {
     if (err) {
       return res.status(500).send({ error: err })
@@ -57,7 +57,6 @@ exports.addCart = (req, res, next) => {
           break
         }
       }
-
       if (itemIndex === -1) {
         // 장바구니에 상품이 없으면 추가
         cart.items.push(item)
@@ -66,7 +65,6 @@ exports.addCart = (req, res, next) => {
         cart.items[itemIndex].price = item.price
         cart.items[itemIndex].quantity = item.quantity
       }
-
       // 장바구니 업데이트 및 저장
       cart.save((err, savedCart) => {
         if (err) {
