@@ -8,6 +8,7 @@ const errorController = require('./controllers/error')
 // 라우터 연결
 const adminRoutes = require('./routes/admin')
 const shopRoutes = require('./routes/shop')
+const cartRoutes = require('./routes/cart')
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -20,6 +21,7 @@ dbConnect()
 
 app.use('/admin', adminRoutes)
 app.use('/shop', shopRoutes)
+app.use('/cart', cartRoutes)
 
 app.use(errorController.get404)
 
