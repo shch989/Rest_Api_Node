@@ -30,12 +30,12 @@ const userSchema = new mongoose.Schema({
         min: 1,
         required: true,
       },
-    totalPrice: {
-      type: Number,
-      required: true,
+      totalPrice: {
+        type: Number,
+        required: true,
+      },
+      _id: false,
     },
-    _id: false
-    }
   ],
 })
 

@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true, // 필수 입력
+    trim: true, // 공백 제거
+  },
   title: {
     type: String,
     required: true, // 필수 입력
