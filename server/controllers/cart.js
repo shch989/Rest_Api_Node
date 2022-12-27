@@ -29,11 +29,11 @@ exports.addCart = (req, res, next) => {
     imageUrl: req.body.imageUrl,
     price: +req.body.price,
     quantity: +req.body.quantity,
-    totalPrice: +req.body.totalPrice
+    totalPrice: +req.body.totalPrice,
   }
   Cart.findOne({ userId: userId }, (err, cart) => {
     if (err) {
-      return res.status(500).send({ error: err })
+      return res.status(500).send({ message: err })
     }
 
     if (!cart) {
@@ -44,7 +44,7 @@ exports.addCart = (req, res, next) => {
       })
       newCart.save((err, savedCart) => {
         if (err) {
-          return res.status(500).send({ error: err })
+          return res.status(500).send({ message: err })
         }
         return res.status(200).send(savedCart)
       })
@@ -68,10 +68,26 @@ exports.addCart = (req, res, next) => {
       // 장바구니 업데이트 및 저장
       cart.save((err, savedCart) => {
         if (err) {
-          return res.status(500).send({ error: err })
+          return res.status(500).send({ message: err })
         }
         return res.status(200).send(savedCart)
       })
     }
+  })
+}
+
+exports.deleteCart = (req, res, next) => {
+  const userId = req.params.userId
+  const prodId = req.params.prodId
+  Cart.findOne({ userId: userId }, (err, cart) => {
+    if (err) return res.status(500).send({ message: err })
+    const itemIndex = cart.items.findIndex((item) => item.id === prodId)
+    cart.items.splice(itemIndex, 1)
+    cart.save((err) => {
+      if (err) return res.json({ message: err })
+      return res
+        .status(200)
+        .json({ message: '장바구니 목록에서 삭제되었습니다.' })
+    })
   })
 }

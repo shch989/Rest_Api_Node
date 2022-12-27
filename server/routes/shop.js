@@ -6,7 +6,5 @@ const shopController = require('../controllers/shop')
 router.get('/products', shopController.getProduct)
 // /shop/cart => GET
 router.get('/product-detail/:prodId', shopController.getProductId)
-// /shop/checkout => GET
-router.get('/checkout')
 
 module.exports = router;
